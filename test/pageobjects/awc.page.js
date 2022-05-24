@@ -10,7 +10,7 @@ class AWCPage extends Page {
      * define selectors using getter methods
      */
     get title () {
-        return $('h1*=Astro Weight Calculator');
+        return $('h1*=Calculator!');
     }
 
     get inputEarthWeight () {
@@ -19,11 +19,11 @@ class AWCPage extends Page {
 
 
     get dropdown () {
-        return $('[name="planets"]');
+        return $('#planets');
     }
 
     get moonOption () {
-        return $('option=Moon');
+        return $('//body/form[1]/div[1]/div[2]/select[1]/option[7]');
     }
 
     get btnSubmit () {
@@ -32,6 +32,22 @@ class AWCPage extends Page {
 
     get output () {
         return $('#output');
+    }
+
+    get planetName () {
+        return $('#planetName');
+    }
+
+    get weightMulter () {
+        return $('#weightMultiplier');
+    }
+
+    get btnAdd () {
+        return $('#add-button');
+    }
+
+    get reachOption () {
+        return $('//body/form[1]/div[1]/div[2]/select[1]/option[12]');
     }
 
     /**
@@ -44,6 +60,12 @@ class AWCPage extends Page {
         await this.btnSubmit.click();
     }
 
+    //add planet method
+    async planetAdder (nameOfPlanet, grav) {
+        await this.planetName.setValue(nameOfPlanet);
+        await this.weightMulter.setValue(grav);
+        await this.btnAdd.click();
+    }
     /**
      * overwrite specific options to adapt it to page object
      */
